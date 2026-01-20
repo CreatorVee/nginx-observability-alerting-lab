@@ -1,0 +1,11 @@
+groups:
+- name: nginx-alerts
+  rules:
+  - alert: NginxDown
+    expr: up == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Nginx is DOWN"
+      description: "Prometheus cannot scrape Nginx for 30 seconds"
