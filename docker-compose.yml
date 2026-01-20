@@ -30,6 +30,8 @@ services:
       - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     command:
       - "--config.file=/etc/alertmanager/alertmanager.yml"
+    environment:
+      - SMTP_AUTH_PASSWORD=${SMTP_AUTH_PASSWORD}
     ports:
       - "9093:9093"
 

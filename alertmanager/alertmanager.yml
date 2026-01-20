@@ -2,7 +2,7 @@ global:
   smtp_smarthost: smtp.gmail.com:587
   smtp_from: vincentkofinyame@gmail.com
   smtp_auth_username: vincentkofinyame@gmail.com
-  smtp_auth_password: lswcsobwjjziwjqd
+  smtp_auth_password: "${SMTP_AUTH_PASSWORD}"
 
 route:
   receiver: email-alerts
