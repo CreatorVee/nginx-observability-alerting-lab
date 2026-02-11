@@ -52,21 +52,25 @@ This proves full monitoring, alerting, and recovery — end to end
 ---
 
 
+
 # How the System Works
 
 - NGINX runs inside a Docker container
 
-- Prometheus scrapes NGINX metrics
+- Prometheus continuously scrapes the NGINX target
 
-- Alert rules detect downtime
+- Alert rules trigger when the service becomes unavailable
 
-- Alertmanager sends email alerts
+- Alertmanager routes alerts via email (validated during testing)
 
-- Alerts resolve automatically when service recovers
+- Alerts automatically resolve once the service recovers
+
+- Note: Email alerting was successfully validated during development.
+The tracked repository contains a sanitised configuration file without live SMTP credentials for security reasons.
 
   ---
 
-  # Failure Simulation (Intentional)
+  # Simulated Service Failure — NGINX container intentionally stopped to trigger monitoring alert
 
   **Step 1-Stop NGINX**
   - docker stop nginx_app
@@ -90,13 +94,12 @@ This proves full monitoring, alerting, and recovery — end to end
 
 <img width="888" height="334" alt="2026-01-19_21h54_34" src="https://github.com/user-attachments/assets/f1f01c46-9297-4e51-8aee-35ddc811277c" />
 
-**Alertmanager Dashboard - Critical severity alert displayed for NGINX service downtime**
-
+**Alertmanager Dashboard — Critical alert generated after NGINX target became unreachable**
 ---
 
 <img width="1564" height="237" alt="2026-01-19_21h54_02" src="https://github.com/user-attachments/assets/288c7833-4822-4c8d-bf99-9ecadec57d0b" />
 
-**Alert Cleared - Prometheus Alert Active - NGINX down alert firing in Prometheus monitoring dashboard**
+**Prometheus Monitoring View — Alert rule firing due to NGINX service downtime**
 
 
   ---
@@ -120,13 +123,13 @@ This proves full monitoring, alerting, and recovery — end to end
 
 <img width="1094" height="631" alt="2026-01-20_18h08_30" src="https://github.com/user-attachments/assets/14f6be86-28d9-4b7b-937b-b0c5b4d44026" />
 
-**Critical Alert Triggered - Email notification sent by Alertmanager when NGINX service goes down**
+**Email Notification (Test Phase) — Critical alert delivered via Gmail SMTP integration**
 
 ---
 
 <img width="1099" height="630" alt="2026-01-20_18h08_51" src="https://github.com/user-attachments/assets/3a764cac-36ef-41be-8b28-042fbafc6867" />
 
-**Alert Resolved - Email confirmation sent when NGINX service is restored and healthy**
+**Email Notification (Test Phase) — Resolution alert received after service recovery**
 
 ---
 
@@ -157,5 +160,18 @@ This proves full monitoring, alerting, and recovery — end to end
 - Restore services
 
 - Validate fixes with alerts
+
+
+
+---
+
+
+# Email Alerting Validation
+
+Email notifications were successfully tested during development using Gmail SMTP and a secure app password.
+
+Due to security best practices, SMTP credentials are excluded from the tracked repository. A template configuration file is provided for users to configure their own credentials
+
   
 ---
+
