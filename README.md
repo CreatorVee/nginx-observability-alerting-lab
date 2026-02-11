@@ -66,7 +66,7 @@ This proves full monitoring, alerting, and recovery — end to end
 - Alerts automatically resolve once the service recovers
 
 - Note: Email alerting was successfully validated during development.
-The tracked repository contains a sanitised configuration file without live SMTP credentials for security reasons.
+The tracked repository contains a simple and clean configuration file without live SMTP credentials for security reasons.
 
   ---
 
@@ -174,4 +174,5 @@ Due to security best practices, SMTP credentials are excluded from the tracked r
 
   
 ---
+
 
